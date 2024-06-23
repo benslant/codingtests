@@ -8,8 +8,10 @@ datasource db {
 }
 
 model group {
-  id   String  @id
-  name String? @unique @db.VarChar(50)
+  id     String  @id
+  name   String? @unique @db.VarChar(50)
+  users  user[]
+  userId String?
 }
 
 model user {
@@ -17,4 +19,5 @@ model user {
   first_name String? @db.VarChar(50)
   last_name  String? @db.VarChar(50)
   email      String? @unique @db.VarChar(50)
+  groups     group[]
 }
