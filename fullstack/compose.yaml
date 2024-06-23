@@ -1,0 +1,15 @@
+services:
+  web:
+    build: ./nextjs-app/.
+    image: nextjs-app:latest
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/code
+  data:
+    image: postgres:16.3-alpine3.20
+    shm_size: 128mb
+    environment:
+      POSTGRES_PASSWORD: example
+    ports:
+      - "5432:5432"

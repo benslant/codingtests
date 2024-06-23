@@ -1,0 +1,2 @@
+def hack():
+    pass
