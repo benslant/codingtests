@@ -7,18 +7,12 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model group_membership {
-  id    String @id
-  user  String @db.Uuid
-  group String @db.Uuid
-}
-
-model groups {
+model group {
   id   String  @id
-  name String? @db.VarChar(50)
+  name String? @unique @db.VarChar(50)
 }
 
-model users {
+model user {
   id         String  @id
   first_name String? @db.VarChar(50)
   last_name  String? @db.VarChar(50)
