@@ -1,0 +1,6 @@
+services:
+
+  web:
+    build: ./
+  data:
+    image: mongo:8.0.9-rc9-jammy

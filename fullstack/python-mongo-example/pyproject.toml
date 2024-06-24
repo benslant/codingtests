@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "pymongo-example"
+version = "0.1.0"
+description = ""
+authors = ["Ben Caldwell <ben.caldwell@messagemedia.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+flask = "^3.0.3"
+sqlalchemy = "^2.0.31"
+sqlalchemy-orm = "^1.2.10"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

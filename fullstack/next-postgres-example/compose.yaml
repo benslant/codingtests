@@ -1,0 +1,34 @@
+services:
+  nodeapp-postgres:
+    image: postgres:16.3-alpine3.20
+    shm_size: 128mb
+    environment:
+      POSTGRES_PASSWORD: example
+    ports:
+      - "5432:5432"
+    networks:
+      test:
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  web:
+    build: ./nextjs-app/.
+    image: nextjs-app:latest
+    # command: sh -c "npm run db-push-docker" && "npm run db-seed-docker" && "npm run docker"
+    command: sh -c "npm run db-push-docker && npm run db-seed-docker && npm run docker"
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/code
+    networks:
+      test:
+    depends_on:
+      nodeapp-postgres:
+        condition: service_healthy
+
+networks:
+  test:
+    driver: bridge
